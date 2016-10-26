@@ -1,0 +1,6 @@
+framework module Pods_Olympic {
+  umbrella header "Pods-Olympic-umbrella.h"
+
+  export *
+  module * { export * }
+}

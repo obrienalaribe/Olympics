@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		43C1742E1DC09F4600E59E48 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1742D1DC09F4600E59E48 /* main.swift */; };
+		43C174371DC0DE7500E59E48 /* csvHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C174361DC0DE7500E59E48 /* csvHelper.swift */; };
+		CB393AD41F19583A6C204F7A /* Pods_Olympic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A204E0AC6104ACFF66ED539 /* Pods_Olympic.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,11 @@
 /* Begin PBXFileReference section */
 		43C1742A1DC09F4600E59E48 /* Olympic */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Olympic; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C1742D1DC09F4600E59E48 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		43C174351DC0DE1500E59E48 /* golds.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = golds.csv; path = ../golds.csv; sourceTree = "<group>"; };
+		43C174361DC0DE7500E59E48 /* csvHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csvHelper.swift; sourceTree = "<group>"; };
+		8A204E0AC6104ACFF66ED539 /* Pods_Olympic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Olympic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBA30807A7A34361A11A300D /* Pods-Olympic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Olympic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Olympic/Pods-Olympic.release.xcconfig"; sourceTree = "<group>"; };
+		D4C481053AA9BF32C0F606F9 /* Pods-Olympic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Olympic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Olympic/Pods-Olympic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB393AD41F19583A6C204F7A /* Pods_Olympic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D16CE81D92CAE607753D378 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D4C481053AA9BF32C0F606F9 /* Pods-Olympic.debug.xcconfig */,
+				CBA30807A7A34361A11A300D /* Pods-Olympic.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		43C174211DC09F4600E59E48 = {
 			isa = PBXGroup;
 			children = (
 				43C1742C1DC09F4600E59E48 /* Olympic */,
 				43C1742B1DC09F4600E59E48 /* Products */,
+				3D16CE81D92CAE607753D378 /* Pods */,
+				825C3FEE4601D3E0570F9D44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +76,19 @@
 		43C1742C1DC09F4600E59E48 /* Olympic */ = {
 			isa = PBXGroup;
 			children = (
+				43C174351DC0DE1500E59E48 /* golds.csv */,
 				43C1742D1DC09F4600E59E48 /* main.swift */,
+				43C174361DC0DE7500E59E48 /* csvHelper.swift */,
 			);
 			path = Olympic;
+			sourceTree = "<group>";
+		};
+		825C3FEE4601D3E0570F9D44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A204E0AC6104ACFF66ED539 /* Pods_Olympic.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -69,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43C174311DC09F4600E59E48 /* Build configuration list for PBXNativeTarget "Olympic" */;
 			buildPhases = (
+				DBF6F9CB0D09113CF78E4474 /* [CP] Check Pods Manifest.lock */,
 				43C174261DC09F4600E59E48 /* Sources */,
 				43C174271DC09F4600E59E48 /* Frameworks */,
 				43C174281DC09F4600E59E48 /* CopyFiles */,
+				F901C767DF5D911462A1FFCB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -94,6 +125,7 @@
 				TargetAttributes = {
 					43C174291DC09F4600E59E48 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -115,11 +147,45 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DBF6F9CB0D09113CF78E4474 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F901C767DF5D911462A1FFCB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Olympic/Pods-Olympic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		43C174261DC09F4600E59E48 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43C174371DC0DE7500E59E48 /* csvHelper.swift in Sources */,
 				43C1742E1DC09F4600E59E48 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +283,7 @@
 		};
 		43C174321DC09F4600E59E48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4C481053AA9BF32C0F606F9 /* Pods-Olympic.debug.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -225,6 +292,7 @@
 		};
 		43C174331DC09F4600E59E48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBA30807A7A34361A11A300D /* Pods-Olympic.release.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -250,6 +318,7 @@
 				43C174331DC09F4600E59E48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
