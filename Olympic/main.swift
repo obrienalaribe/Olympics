@@ -8,10 +8,7 @@
 
 import Foundation
 
-
-
-
-let file = "/Users/oalaribe/Documents/Swift/Olympic/golds.csv" //this is the file. we will write to and read from it
+let file = "/Users/mac/Desktop/Olympics/golds.csv" //this is the file. we will write to and read from it
 
 let location = NSString(string:file)
 let fileContent = try? String(contentsOfFile: location as String, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
@@ -34,36 +31,66 @@ for data in dataArr {
     }
 }
 
-    
     var countryDictionaryCount = Dictionary<String, Int>()
 
+
+func save(csvFileContent : String) {
+    let destPath = "/Users/mac/Desktop/file.csv"
+    var filemgr = FileManager.default
+    do {
+        try csvFileContent.write(toFile: destPath, atomically: true, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+    } catch let error as Error {
+        print("Error: \(error)")
+    }
+}
+
+
 for record in records {
-    if previousYear != record.year {
-        print(" ------------------------ create new dictionay for year")
-        //create new country list for this year
-        countryDictionaryCount = Dictionary<String, Int>()
+    if record.sport == "Athletics" {
         
-        countryDictionaryCount[record.country] = 1
-        
-        goldTotalsByYear[record.year] = countryDictionaryCount
-
-
-    }else if let total = countryDictionaryCount[record.country] {
+        if previousYear != record.year {
+            print(" ------------------------ create new dictionay for year")
+            //create new country list for this year
+            countryDictionaryCount = Dictionary<String, Int>()
+            
+            countryDictionaryCount[record.country] = 1
+            
+            goldTotalsByYear[record.year] = countryDictionaryCount
+            
+            
+        }else if let total = countryDictionaryCount[record.country] {
             countryDictionaryCount[record.country] = total + 1
-        goldTotalsByYear[record.year] = countryDictionaryCount
-
+            goldTotalsByYear[record.year] = countryDictionaryCount
+            
         }else{
             countryDictionaryCount[record.country] = 1
             goldTotalsByYear[record.year] = countryDictionaryCount
-
+            
         }
-
-
+        
+        
         previousYear = record.year
-
     }
+   
+
+}
 
 
-print(" \(goldTotalsByYear)")
+//print(" \((goldTotalsByYear["1996"] ))")
 
+//save(dictionary: goldTotalsByYear as NSDictionary)
+
+var csvFile = ""
+
+for (key, year) in goldTotalsByYear.enumerated() {
+
+        for (index, value) in year.value.enumerated() {
+//            print("\(year.key) : \(value.key), \(value.value)")
+            
+            csvFile += "\(year.key), \(value.key), \(value.value) \n"
+        
+    }
+}
+
+save(csvFileContent: csvFile)
 
